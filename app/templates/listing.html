@@ -1,0 +1,25 @@
+{% include 'index.html' %}
+    <div class="container mx-auto">
+        <div class="card mb-3" style="height:70%;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{property.image}}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title">{{property.name}}</h4>
+                  <h6 class="card-address text-end"> <i class="bi bi-geo-alt">{{ property.address }}</i></h6>
+                  <p class="card-text">{{property.summary}}</p>
+                  {% for amenity in property.amenities %}
+                        <span class="text-2xl badge text-bg-success text-center">{{ amenity }}</span>
+                        {% endfor %}
+
+                    </div>
+                    <a href="/confirmation/{{property.id}}" class="btn btn-outline-success text-center">Book</a>
+              </div>
+            </div>
+          </div>
+      </div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<div class="container-fluid pt-5 mb-2">
+    <div class="row">
+        {% for property in response %}
+        {% include 'modal.html' %}   
+        <div class="col-6 col-md-4">
+          <div class="card">
+            <img src="{{ property.image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{property.name }}</h5>
+                <p class="card-text">  Type:
+                  {{property.property_type}}
+                  <br>
+                  <i class="bi bi-geo-alt">{{ property.address }}</i></p>
+                <button type="button" class="btn btn-outline-primary mx-auto d-block" data-bs-toggle="modal" data-bs-target="#openmodal-{{property.id}}">
+                        Visit 
+                </button>
+              </div>
+            </div>
+          </div>
+{% endfor %}
+        </div>
+        </div>

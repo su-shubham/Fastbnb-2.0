@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="py-16">
+    <div class="container max-w-screen-xl">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-5 mb-10 mb-lg-0">
+          <h1 class="ls-tight font-bolder display-6 mb-3">
+            Find your perfect home away from home.
+          </h1>
+          <div class="mx-n2">
+            {% include 'search.html' %}
+          </div>
+        </div>
+            {% include './components/card_slider.html' %}
+      </div>
+    </div>
+  </div>
+{% include 'card.html' %}
+  {%endblock%}

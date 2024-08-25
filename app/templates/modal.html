@@ -1,0 +1,38 @@
+       
+       <div class="modal fade" id="openmodal-{{property.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel"><i class="bi bi-house">{{property.name}}</i></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <br>
+                {{ property.summary}}
+            </div>
+            <div class="modal-footer">
+                <a href="/listing/{{property.id}}" class="btn btn-outline-dark">More Info <i class="bi bi-info"></i></a>
+                <button type="button" class="btn btn-outline-success" data-bs-target="#secondmodal-{{property.id}}" data-bs-toggle="modal">Book Now <i class="bi bi-cash"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+       
+      <div class="modal fade" id="secondmodal-{{property.id}}"" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 text-2xl id="staticBackdropLabel">Confirm Payment-${{property.price}}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- <div class="modal-body">
+
+            </div> -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <a href="/confirmation/{{property.id}}" class="btn btn-success">Pay ${{property.price}}</a>
+              </div>
+          </div>
+        </div>
+      </div>
+            
