@@ -97,7 +97,7 @@ body {
 .photo-card-slider {
     overflow: hidden;
     position: relative;
-    width: 100%;
+    width: 100%; /* Ensure the container width is set */
 }
 
 .slider-container {
@@ -107,22 +107,11 @@ body {
 
 .slides {
     display: flex;
-    width: 200%; /* 100% * 2 (original set + cloned set) */
+    width: 100%;
 }
 
 .slides img {
-    flex: 0 0 12.5%; /* 100% / (number of images * 2) */
-    width: 12.5%; /* 100% / (number of images * 2) */
-    height: auto;
+    flex: 0 0 100%; /* Adjust based on the number of visible images */
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
 }
-
-.photo-card-slider {
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .swiper-slide img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
