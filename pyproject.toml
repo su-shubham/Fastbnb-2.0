@@ -37,6 +37,9 @@ ujson = "5.5.0"
 uvicorn = "0.20.0"
 watchfiles = "0.18.1"
 websockets = "10.4"
+pytest = "^8.3.2"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 
 
 

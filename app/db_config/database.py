@@ -1,6 +1,5 @@
 import motor.motor_asyncio
-from ..models import BnB
-from .config import settings
+from app.config import settings
 
 try:
     client = motor.motor_asyncio.AsyncIOMotorClient(settings.mongoDB_url)

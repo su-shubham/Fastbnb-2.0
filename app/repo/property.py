@@ -1,7 +1,7 @@
 from bson import ObjectId, Decimal128
 from typing import Dict, Any
 from app.models import BnB
-from ..db_config.database import collection as db
+from app.database import collection as db
 
 
 def serialize_document(document: Dict[str, Any]) -> Dict[str, Any]:
