@@ -1,56 +1,91 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <div class="px-5 py-5 p-lg-0">
-    <div class="d-flex justify-content-center">
-      <div class="col-12 col-md-9 col-lg-7 min-h-lg-screen d-flex flex-column justify-content-center py-lg-16 px-lg-20 position-relative">
-        <div class="row">
-          <div class="col-lg-10 col-md-9 col-xl-7 mx-auto">
-            <div class="text-center mb-12">
-              <a class="d-inline-block" href="#">
-                              <img src="https://preview.webpixels.io/web/img/logos/clever-primary-sm.svg" class="h-12" alt="...">
-  
-                          </a>
-              <!-- <span class="d-inline-block d-lg-block h1 mb-lg-6 me-3">👋</span> -->
-              <h1 class="ls-tight font-bolder h2">
-                Welcome to FastBnB!
-              </h1>
-              <p class="mt-2">Create a Account</p>
-            </div>
-            <form>
-              <div class="mb-5">
-                <label class="form-label" for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Your email address">
-              </div>
-              <div class="mb-5">
-                <label class="form-label" for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="current-password">
-              </div>
-              <div>
-              <div class="mb-5">
-                <label class="form-label" for="password">Confirm Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="current-password">
-              </div>
-              <div class="mb-5">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="check_example" id="check_example">
-                  <label class="form-check-label" for="check_example">
-                    I agree to the <a href="#" class="text-warning">Terms of Service</a> and <a href="#" class="text-warning">Privacy Policy</a>
-                  </label>
-                </div>
-              </div>
-              <div>
-                <a href="#" class="btn btn-primary w-full">
-                  Sign up
-                </a>
-              </div>
-            </form>
-            <div class="my-6">
-              <small>Already have account</small>
-              <a href="/login" class="text-warning text-sm font-semibold">Sign in</a>
-            </div>
+  <div class="d-flex justify-content-center">
+    <div
+      class="col-12 col-md-9 col-lg-7 min-h-lg-screen d-flex flex-column justify-content-center py-lg-16 px-lg-20 position-relative">
+      <div class="row">
+        <div class="col-lg-10 col-md-9 col-xl-7 mx-auto">
+          <div class="text-center mb-12">
+            <a class="d-inline-block" href="#">
+              <img src="../../static/images/logo.jpg" class="h-12" alt="...">
+            </a>
+            <h1 class="ls-tight font-bolder h2">
+              Welcome to FastBnB!
+            </h1>
+            <p class="mt-2">Create an Account</p>
           </div>
+          <form id="registerForm">
+            <div class="mb-5">
+              <label class="form-label" for="username">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="Your username" required>
+            </div>
+            <div class="mb-5">
+              <label class="form-label" for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password"
+                autocomplete="new-password" required>
+            </div>
+            <div class="mb-5">
+              <label class="form-label" for="confirm_password">Confirm Password</label>
+              <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password"
+                autocomplete="new-password" required>
+            </div>
+            <div class="mb-5">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="check_example" id="check_example" required>
+                <label class="form-check-label" for="check_example">
+                  I agree to the <a href="#" class="text-warning">Terms of Service</a> and <a href="#"
+                    class="text-warning">Privacy Policy</a>
+                </label>
+              </div>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary w-full">Sign up</button>
+            </div>
+          </form>
+          <div class="my-6">
+            <small>Already have an account?</small>
+            <a href="/login" class="text-warning text-sm font-semibold">Sign in</a>
+          </div>
+          <div class="message" id="message"></div>
         </div>
       </div>
     </div>
   </div>
-  {% endblock %}
+</div>
+
+{% endblock %}
+document.getElementById('registerForm').addEventListener('submit', async function (e) {
+  e.preventDefault(); // Prevent form from refreshing the page
+
+  // Get form input values
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirm_password').value;
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
+      document.getElementById('message').textContent = "Passwords do not match!";
+      return;
+  }
+
+  // Send registration request to the backend
+  const response = await fetch('http://localhost:8000/users/register', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          'username': username,
+          'password': password,
+      })
+  });
+
+  const data = await response.json();
+
+  if (response.ok) {
+      document.getElementById('message').textContent = "Registration successful! Please login.";
+  } else {
+      document.getElementById('message').textContent = data.detail || 'Registration failed!';
+  }
+});
